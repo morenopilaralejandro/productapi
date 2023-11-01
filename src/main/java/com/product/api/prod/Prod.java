@@ -4,6 +4,7 @@ package com.product.api.prod;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -12,7 +13,7 @@ import jakarta.persistence.Table;
 public class Prod {
 
 	@Column(name = "prod_id")
-	private @Id @GeneratedValue Long prodId;
+	private @Id @GeneratedValue(strategy=GenerationType.IDENTITY) Long prodId;
 	@Column(name = "prod_name_en")
 	private String prodNameEn;
 	@Column(name = "prod_name_es")
