@@ -1,0 +1,60 @@
+package com.product.api.alle;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "alle")
+public class Alle {
+
+	@Column(name = "alle_id")
+	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long alleId;
+	@Column(name = "alle_name_en")
+	private String alleNameEn;
+	@Column(name = "alle_name_es")
+	private String alleNameEs;
+
+	public Alle() {
+	}
+
+	public Alle(Long alleId, String alleNameEn, String alleNameEs) {
+		super();
+		this.alleId = alleId;
+		this.alleNameEn = alleNameEn;
+		this.alleNameEs = alleNameEs;
+	}
+
+	public Long getAlleId() {
+		return alleId;
+	}
+
+	public void setAlleId(Long alleId) {
+		this.alleId = alleId;
+	}
+
+	public String getAlleNameEn() {
+		return alleNameEn;
+	}
+
+	public void setAlleNameEn(String alleNameEn) {
+		this.alleNameEn = alleNameEn;
+	}
+
+	public String getAlleNameEs() {
+		return alleNameEs;
+	}
+
+	public void setAlleNameEs(String alleNameEs) {
+		this.alleNameEs = alleNameEs;
+	}
+
+	@Override
+	public String toString() {
+		return "Alle [alleId=" + alleId + ", alleNameEn=" + alleNameEn + ", alleNameEs=" + alleNameEs + "]";
+	}
+
+}
