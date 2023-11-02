@@ -17,3 +17,27 @@ curl -X PUT localhost:8080/prod/5 -H 'Content-type:application/json' -d '{
 	"prodPrice": "0",
 	"catId": "1" }'
 curl -X DELETE localhost:8080/prod/6
+
+
+//alle
+curl -v localhost:8080/alle | json_pp
+curl -v localhost:8080/alle/1 | json_pp
+curl -X POST localhost:8080/alle -H 'Content-type:application/json' -d '{
+	"alleNameEn": "new", 
+	"alleNameEs": "new" }'
+curl -X PUT localhost:8080/alle/15 -H 'Content-type:application/json' -d '{
+	"alleNameEn": "update", 
+	"alleNameEs": "update" }'
+curl -X DELETE localhost:8080/alle/15
+
+
+
+
+
+
+
+
+
+
+
+

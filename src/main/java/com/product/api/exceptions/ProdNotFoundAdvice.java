@@ -8,10 +8,10 @@ import org.springframework.http.HttpStatus;
 
 @ControllerAdvice
 public class ProdNotFoundAdvice {
-	  @ResponseBody
-	  @ExceptionHandler(ProdNotFoundException.class)
-	  @ResponseStatus(HttpStatus.NOT_FOUND)
-	  String prodNotFoundHandler(ProdNotFoundException ex) {
-		  return ex.getMessage();
-	  }
+	@ResponseBody
+	@ExceptionHandler(ProdNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	String prodNotFoundHandler(ProdNotFoundException ex) {
+		return ex.getMessage();
+	}
 }
