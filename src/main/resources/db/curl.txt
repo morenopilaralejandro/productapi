@@ -1,24 +1,3 @@
-//prod
-curl -v localhost:8080/prod | json_pp
-curl -v localhost:8080/prod/1 | json_pp
-curl -v localhost:8080/prod/cat/1 | json_pp
-curl -X POST localhost:8080/prod -H 'Content-type:application/json' -d '{
-	"prodNameEn": "new", 
-	"prodNameEs": "new",
-	"prodDescEn": "new",
-	"prodDescEs": "new",
-	"prodPrice": "0",
-	"catId": "1" }'
-curl -X PUT localhost:8080/prod/5 -H 'Content-type:application/json' -d '{
-	"prodNameEn": "update", 
-	"prodNameEs": "update",
-	"prodDescEn": "update",
-	"prodDescEs": "update",
-	"prodPrice": "0",
-	"catId": "1" }'
-curl -X DELETE localhost:8080/prod/6
-
-
 //alle
 curl -v localhost:8080/alle | json_pp
 curl -v localhost:8080/alle/1 | json_pp
@@ -29,6 +8,40 @@ curl -X PUT localhost:8080/alle/15 -H 'Content-type:application/json' -d '{
 	"alleNameEn": "update", 
 	"alleNameEs": "update" }'
 curl -X DELETE localhost:8080/alle/15
+
+//cat
+curl -v localhost:8080/cat | json_pp
+curl -v localhost:8080/cat/1 | json_pp
+curl -v localhost:8080/cat/1/products | json_pp
+curl -X POST localhost:8080/cat -H 'Content-type:application/json' -d '{
+	"catNameEn": "new", 
+	"catNameEs": "new" }'
+curl -X PUT localhost:8080/cat/4 -H 'Content-type:application/json' -d '{
+	"catNameEn": "update", 
+	"catNameEs": "update" }'
+curl -X DELETE localhost:8080/cat/1
+
+//prod
+curl -v localhost:8080/prod | json_pp
+curl -v localhost:8080/prod/1 | json_pp
+curl -X POST localhost:8080/prod -H 'Content-type:application/json' -d '{
+	"prodNameEn": "new", 
+	"prodNameEs": "new",
+	"prodDescEn": "new",
+	"prodDescEs": "new",
+	"prodPrice": "0",
+	"cat": { "catId" : "1" } }'
+curl -X PUT localhost:8080/prod/5 -H 'Content-type:application/json' -d '{
+	"prodNameEn": "update", 
+	"prodNameEs": "update",
+	"prodDescEn": "update",
+	"prodDescEs": "update",
+	"prodPrice": "0",
+	"cat": { "catId" : "1" } }'
+curl -X DELETE localhost:8080/prod/5
+
+
+
 
 
 

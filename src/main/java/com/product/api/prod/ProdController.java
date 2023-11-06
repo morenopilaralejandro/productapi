@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.product.api.exceptions.ProdNotFoundException;
 
 @RestController
@@ -36,20 +35,15 @@ public class ProdController {
 		return prodRepository.findById(id).orElseThrow(() -> new ProdNotFoundException(id));
 	}
 
-	@GetMapping("/prod/cat/{catId}")
-	List<Prod> byIdCat(@PathVariable Long catId) {
-		return prodRepository.findByCatId(catId);
-	}
-
 	@PutMapping("/prod/{id}")
-	Prod replaceEmployee(@RequestBody Prod newProd, @PathVariable Long id) {
+	Prod replaceProd(@RequestBody Prod newProd, @PathVariable Long id) {
 		return prodRepository.findById(id).map(prod -> {
 			prod.setProdNameEn(newProd.getProdNameEn());
 			prod.setProdNameEs(newProd.getProdNameEs());
 			prod.setProdDescEn(newProd.getProdDescEn());
 			prod.setProdDescEs(newProd.getProdDescEs());
 			prod.setProdPrice(newProd.getProdPrice());
-			prod.setCatId(newProd.getCatId());
+			prod.setCat(newProd.getCat());
 			return prodRepository.save(prod);
 		}).orElseGet(() -> {
 			newProd.setProdId(id);
@@ -58,7 +52,7 @@ public class ProdController {
 	}
 
 	@DeleteMapping("/prod/{id}")
-	void deleteEmployee(@PathVariable Long id) {
+	void deleteProd(@PathVariable Long id) {
 		prodRepository.deleteById(id);
 	}
 }

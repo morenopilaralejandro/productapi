@@ -1,10 +1,14 @@
 package com.product.api.prod;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.product.api.cat.Cat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,14 +27,16 @@ public class Prod {
 	private String prodDescEs;
 	@Column(name = "prod_price")
 	private Float prodPrice;
-	@Column(name = "cat_id")
-	private Long catId;
+	@ManyToOne
+    @JoinColumn(name = "cat_id", referencedColumnName = "cat_id")
+	@JsonIgnoreProperties("products")
+	private Cat cat;
 
 	public Prod() {
 	}
 
 	public Prod(Long prodId, String prodNameEn, String prodNameEs, String prodDescEn, String prodDescEs,
-			float prodPrice, Long catId) {
+			float prodPrice, Cat cat) {
 		super();
 		this.prodId = prodId;
 		this.prodNameEn = prodNameEn;
@@ -38,7 +44,7 @@ public class Prod {
 		this.prodDescEn = prodDescEn;
 		this.prodDescEs = prodDescEs;
 		this.prodPrice = prodPrice;
-		this.catId = catId;
+		this.cat = cat;
 	}
 
 	public Long getProdId() {
@@ -89,17 +95,18 @@ public class Prod {
 		this.prodPrice = prodPrice;
 	}
 
-	public Long getCatId() {
-		return catId;
+	public Cat getCat() {
+		return cat;
 	}
 
-	public void setCatId(Long catId) {
-		this.catId = catId;
+	public void setCat(Cat cat) {
+		this.cat = cat;
 	}
 
 	@Override
 	public String toString() {
 		return "Prod [prodId=" + prodId + ", prodNameEn=" + prodNameEn + ", prodNameEs=" + prodNameEs + ", prodDescEn="
-				+ prodDescEn + ", prodDescEs=" + prodDescEs + ", prodPrice=" + prodPrice + ", catId=" + catId + "]";
+				+ prodDescEn + ", prodDescEs=" + prodDescEs + ", prodPrice=" + prodPrice + ", cat=" + cat + "]";
 	}
+
 }
