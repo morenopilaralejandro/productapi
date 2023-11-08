@@ -21,6 +21,33 @@ curl -X PUT localhost:8080/cat/4 -H 'Content-type:application/json' -d '{
 	"catNameEs": "update" }'
 curl -X DELETE localhost:8080/cat/1
 
+//cntcstate
+curl -v localhost:8080/cntcstate | json_pp
+curl -v localhost:8080/cntcstate/1 | json_pp
+curl -v localhost:8080/cntcstate/1/contactList | json_pp
+curl -X POST localhost:8080/cntcstate -H 'Content-type:application/json' -d '{
+	"cntcstateName": "new" }'
+curl -X PUT localhost:8080/cntcstate/1 -H 'Content-type:application/json' -d '{
+	"cntcstateName": "update" }'
+curl -X DELETE localhost:8080/cntcstate/1
+
+//contact
+curl -v localhost:8080/contact | json_pp
+curl -v localhost:8080/contact/1 | json_pp
+curl -X POST localhost:8080/contact -H 'Content-type:application/json' -d '{
+	"contactName": "new", 
+	"contactEmail": "new",
+	"contactMsg": "new",
+	"contactDate": "",
+	"cntcstate": { "cntcstateId" : "1" } }'
+curl -X PUT localhost:8080/contact/1 -H 'Content-type:application/json' -d '{
+	"contactName": "update", 
+	"contactEmail": "update",
+	"contactMsg": "update",
+	"contactDate": "",
+	"cntcstate": { "cntcstateId" : "2" } }'
+curl -X DELETE localhost:8080/contact/1
+
 //prod
 curl -v localhost:8080/prod | json_pp
 curl -v localhost:8080/prod/1 | json_pp
