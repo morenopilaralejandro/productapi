@@ -1,5 +1,7 @@
 package com.product.api.prod;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.product.api.cat.Cat;
 import jakarta.persistence.Column;
@@ -8,8 +10,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import com.product.api.alle.Alle;
 
 @Entity
 @Table(name = "prod")
@@ -28,9 +33,13 @@ public class Prod {
 	@Column(name = "prod_price")
 	private Float prodPrice;
 	@ManyToOne
-    @JoinColumn(name = "cat_id", referencedColumnName = "cat_id")
+	@JoinColumn(name = "cat_id", referencedColumnName = "cat_id")
 	@JsonIgnoreProperties("products")
 	private Cat cat;
+	@ManyToMany
+	@JoinTable(name = "prodalle", joinColumns = @JoinColumn(name = "prod_id"), inverseJoinColumns = @JoinColumn(name = "alle_id"))
+	@JsonIgnoreProperties("products")
+	List<Alle> allergens;
 
 	public Prod() {
 	}

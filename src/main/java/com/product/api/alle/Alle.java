@@ -1,10 +1,16 @@
 package com.product.api.alle;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.product.api.prod.Prod;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,6 +23,9 @@ public class Alle {
 	private String alleNameEn;
 	@Column(name = "alle_name_es")
 	private String alleNameEs;
+	@ManyToMany(mappedBy = "allergens")
+	@JsonIgnoreProperties("products")
+	List<Prod> allergens;
 
 	public Alle() {
 	}
