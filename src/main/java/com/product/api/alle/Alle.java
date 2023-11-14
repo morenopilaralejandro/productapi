@@ -1,6 +1,7 @@
 package com.product.api.alle;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.product.api.prod.Prod;
@@ -64,6 +65,24 @@ public class Alle {
 	@Override
 	public String toString() {
 		return "Alle [alleId=" + alleId + ", alleNameEn=" + alleNameEn + ", alleNameEs=" + alleNameEs + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(alleId, alleNameEn, alleNameEs);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Alle other = (Alle) obj;
+		return Objects.equals(alleId, other.alleId) && Objects.equals(alleNameEn, other.alleNameEn)
+				&& Objects.equals(alleNameEs, other.alleNameEs);
 	}
 
 }

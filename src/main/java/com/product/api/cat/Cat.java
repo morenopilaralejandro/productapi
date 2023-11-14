@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.product.api.prod.Prod;
@@ -74,6 +75,24 @@ public class Cat {
 	public String toString() {
 		return "Cat [catId=" + catId + ", catNameEn=" + catNameEn + ", catNameEs=" + catNameEs + ", produts=" + products
 				+ "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(catId, catNameEn, catNameEs);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cat other = (Cat) obj;
+		return Objects.equals(catId, other.catId) && Objects.equals(catNameEn, other.catNameEn)
+				&& Objects.equals(catNameEs, other.catNameEs);
 	}
 
 }

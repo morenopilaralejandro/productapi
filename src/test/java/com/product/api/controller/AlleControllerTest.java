@@ -1,9 +1,9 @@
 package com.product.api.controller;
 
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,10 +42,22 @@ public class AlleControllerTest {
 	@Test
 	public void shouldGetAllAlle() {
 		// Given && When
+		int rows = 14;
 		List<Alle> found = alleRepository.findAll();
 
 		// Then
-		assertEquals(found.size(), 14);
+		Assert.assertEquals(found.size(), rows);
+
+	}
+
+	@Test
+	public void shouldGetOneAlle() {
+		// Given && When
+		Optional<Alle> alle1 = Optional.ofNullable(new Alle(1L, "celery", "apio"));
+		Optional<Alle> alleFound = alleRepository.findById(1L);
+
+		// Then
+		Assert.assertEquals(alle1, alleFound);
 
 	}
 }

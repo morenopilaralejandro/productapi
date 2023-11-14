@@ -1,6 +1,8 @@
 package com.product.api.cntcstate;
 
 import java.util.List;
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.product.api.contact.Contact;
 import jakarta.persistence.CascadeType;
@@ -62,6 +64,23 @@ public class Cntcstate {
 	public String toString() {
 		return "Cntcstate [cntcstateId=" + cntcstateId + ", cntcstateName=" + cntcstateName + ", contactList="
 				+ contactList + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cntcstateId, cntcstateName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cntcstate other = (Cntcstate) obj;
+		return Objects.equals(cntcstateId, other.cntcstateId) && Objects.equals(cntcstateName, other.cntcstateName);
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.product.api.contact;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.product.api.cntcstate.Cntcstate;
@@ -98,6 +99,25 @@ public class Contact {
 	public String toString() {
 		return "Contact [contactId=" + contactId + ", contactName=" + contactName + ", contactEmail=" + contactEmail
 				+ ", contactMsg=" + contactMsg + ", contactDate=" + contactDate + ", cntcstate=" + cntcstate + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(contactDate, contactEmail, contactId, contactMsg, contactName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contact other = (Contact) obj;
+		return Objects.equals(contactDate, other.contactDate) && Objects.equals(contactEmail, other.contactEmail)
+				&& Objects.equals(contactId, other.contactId) && Objects.equals(contactMsg, other.contactMsg)
+				&& Objects.equals(contactName, other.contactName);
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.product.api.prod;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.product.api.cat.Cat;
@@ -116,6 +117,25 @@ public class Prod {
 	public String toString() {
 		return "Prod [prodId=" + prodId + ", prodNameEn=" + prodNameEn + ", prodNameEs=" + prodNameEs + ", prodDescEn="
 				+ prodDescEn + ", prodDescEs=" + prodDescEs + ", prodPrice=" + prodPrice + ", cat=" + cat + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(prodDescEn, prodDescEs, prodId, prodNameEn, prodNameEs, prodPrice);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Prod other = (Prod) obj;
+		return Objects.equals(prodDescEn, other.prodDescEn) && Objects.equals(prodDescEs, other.prodDescEs)
+				&& Objects.equals(prodId, other.prodId) && Objects.equals(prodNameEn, other.prodNameEn)
+				&& Objects.equals(prodNameEs, other.prodNameEs) && Objects.equals(prodPrice, other.prodPrice);
 	}
 
 }
