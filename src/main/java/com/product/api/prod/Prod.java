@@ -5,6 +5,8 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.product.api.cat.Cat;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,14 +35,15 @@ public class Prod {
 	private String prodDescEs;
 	@Column(name = "prod_price")
 	private Float prodPrice;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cat_id", referencedColumnName = "cat_id")
 	@JsonIgnoreProperties("products")
 	private Cat cat;
+
 	@ManyToMany
 	@JoinTable(name = "prodalle", joinColumns = @JoinColumn(name = "prod_id"), inverseJoinColumns = @JoinColumn(name = "alle_id"))
 	@JsonIgnoreProperties("products")
-	List<Alle> allergens;
+	private List<Alle> allergens;
 
 	public Prod() {
 	}
@@ -111,6 +114,14 @@ public class Prod {
 
 	public void setCat(Cat cat) {
 		this.cat = cat;
+	}
+
+	public List<Alle> getAllergens() {
+		return allergens;
+	}
+
+	public void setAllergens(List<Alle> allergens) {
+		this.allergens = allergens;
 	}
 
 	@Override

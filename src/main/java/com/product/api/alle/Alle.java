@@ -25,8 +25,8 @@ public class Alle {
 	@Column(name = "alle_name_es")
 	private String alleNameEs;
 	@ManyToMany(mappedBy = "allergens")
-	@JsonIgnoreProperties("products")
-	List<Prod> allergens;
+	@JsonIgnoreProperties("allergens")
+	private List<Prod> products;
 
 	public Alle() {
 	}
@@ -60,6 +60,14 @@ public class Alle {
 
 	public void setAlleNameEs(String alleNameEs) {
 		this.alleNameEs = alleNameEs;
+	}
+
+	public List<Prod> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Prod> products) {
+		this.products = products;
 	}
 
 	@Override
