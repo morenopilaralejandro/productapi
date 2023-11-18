@@ -40,7 +40,7 @@ public class Prod {
 	@JsonIgnoreProperties("products")
 	private Cat cat;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "prodalle", joinColumns = @JoinColumn(name = "prod_id"), inverseJoinColumns = @JoinColumn(name = "alle_id"))
 	@JsonIgnoreProperties("products")
 	private List<Alle> allergens;
