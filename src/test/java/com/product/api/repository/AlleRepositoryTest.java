@@ -2,15 +2,14 @@ package com.product.api.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import org.assertj.core.util.Arrays;
 import org.junit.Assert;
 import org.junit.ClassRule;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.ApplicationContextInitializer;
@@ -23,6 +22,7 @@ import com.product.api.ApiApplication;
 import com.product.api.alle.Alle;
 import com.product.api.alle.AlleRepository;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(SpringRunner.class)
 @ContextConfiguration(initializers = AlleRepositoryTest.Initializer.class, classes = ApiApplication.class)
 public class AlleRepositoryTest {
@@ -45,7 +45,6 @@ public class AlleRepositoryTest {
 	
 	@Test
 	public void shouldGetAllAlle() {
-		// Given && When
 		Alle alle1 = new Alle(1L, "celery", "apio");
 		Alle alle2 = new Alle(2L, "crustaceans", "crustaceos");
 		Alle alle3 = new Alle(3L, "eggs", "huevos");
@@ -60,7 +59,6 @@ public class AlleRepositoryTest {
 		Alle alle12 = new Alle(12L, "sesame", "sésamo");
 		Alle alle13 = new Alle(13L, "soya", "soja");
 		Alle alle14 = new Alle(14L, "sulphites", "sulfitos");
-		Alle alle15 = new Alle(15L, "new", "new");
 		List<Alle> alleList = new ArrayList<>();
 		alleList.add(alle1);
 		alleList.add(alle2);
@@ -76,59 +74,49 @@ public class AlleRepositoryTest {
 		alleList.add(alle12);
 		alleList.add(alle13);
 		alleList.add(alle14);
-		alleList.add(alle15);
 	
 		List<Alle> found = alleRepository.findAll();
 		
-		// Then
 		Assert.assertEquals(found, alleList);
 
 	}
 
 	@Test
 	public void shouldGetOneAlle() {
-		// Given && When
 		Alle alle1 = new Alle(1L, "celery", "apio");
 		Alle alleFound = alleRepository.findById(1L).get();
 
-		// Then
 		Assert.assertEquals(alle1, alleFound);
-
+		
 	}
 	
 	@Test
 	public void shouldCreateNewAlle() {
-		// Given && When
 		Alle alle1 = new Alle(null, "new", "new");
 		Alle alleExpected = new Alle(15L, "new", "new");
 		alleRepository.save(alle1);
 		Optional<Alle> alleFound = alleRepository.findById(15L);
-		
-		// Then
+
 		Assert.assertEquals(alleExpected, alleFound.get());
 
 	}
 	
 	@Test
 	public void shouldReplaceAlle() {
-		// Given && When
 		Alle alle1 = new Alle(1L, "update", "update");
 		alleRepository.save(alle1);
 		Optional<Alle> alleFound = alleRepository.findById(1L);
 		
-		// Then
 		Assert.assertEquals(alle1, alleFound.get());
 
 	}
 	
-	@Test(expected = NoSuchElementException.class)
+	@Test
 	public void shouldDeleteAlle() {
-		// Given && When
 		Optional<Alle> alleFound = alleRepository.findById(15L);
 		alleRepository.deleteById(alleFound.get().getAlleId());
 		Optional<Alle> alleFound2 = alleRepository.findById(15L);
 		
-		// Then
-		alleFound2.get();
+		Assert.assertTrue(alleFound2.isEmpty());
 	}
 }
