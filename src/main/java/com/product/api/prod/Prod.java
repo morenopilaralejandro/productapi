@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.product.api.alle.Alle;
 import com.product.api.cat.Cat;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +17,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import com.product.api.alle.Alle;
 
 @Entity
 @Table(name = "prod")
@@ -35,12 +34,12 @@ public class Prod {
 	private String prodDescEs;
 	@Column(name = "prod_price")
 	private Float prodPrice;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "cat_id", referencedColumnName = "cat_id")
 	@JsonIgnoreProperties("products")
 	private Cat cat;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinTable(name = "prodalle", joinColumns = @JoinColumn(name = "prod_id"), inverseJoinColumns = @JoinColumn(name = "alle_id"))
 	@JsonIgnoreProperties("products")
 	private List<Alle> allergens;
@@ -127,12 +126,12 @@ public class Prod {
 	@Override
 	public String toString() {
 		return "Prod [prodId=" + prodId + ", prodNameEn=" + prodNameEn + ", prodNameEs=" + prodNameEs + ", prodDescEn="
-				+ prodDescEn + ", prodDescEs=" + prodDescEs + ", prodPrice=" + prodPrice + ", cat=" + cat + "]";
+				+ prodDescEn + ", prodDescEs=" + prodDescEs + ", prodPrice=" + prodPrice + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(allergens, cat, prodDescEn, prodDescEs, prodId, prodNameEn, prodNameEs, prodPrice);
+		return Objects.hash(prodDescEn, prodDescEs, prodId, prodNameEn, prodNameEs, prodPrice);
 	}
 
 	@Override
@@ -144,12 +143,9 @@ public class Prod {
 		if (getClass() != obj.getClass())
 			return false;
 		Prod other = (Prod) obj;
-		return Objects.equals(allergens, other.allergens) && Objects.equals(cat, other.cat)
-				&& Objects.equals(prodDescEn, other.prodDescEn) && Objects.equals(prodDescEs, other.prodDescEs)
+		return Objects.equals(prodDescEn, other.prodDescEn) && Objects.equals(prodDescEs, other.prodDescEs)
 				&& Objects.equals(prodId, other.prodId) && Objects.equals(prodNameEn, other.prodNameEn)
 				&& Objects.equals(prodNameEs, other.prodNameEs) && Objects.equals(prodPrice, other.prodPrice);
 	}
-
-
 
 }

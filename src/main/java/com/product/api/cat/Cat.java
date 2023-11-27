@@ -1,6 +1,5 @@
 package com.product.api.cat;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -26,7 +25,7 @@ public class Cat {
 	@Column(name = "cat_name_es")
 	private String catNameEs;
 	@JsonIgnoreProperties("cat")
-	@OneToMany(mappedBy = "cat", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "cat", fetch = FetchType.EAGER)
 	private List<Prod> products;
 
 	public Cat() {
