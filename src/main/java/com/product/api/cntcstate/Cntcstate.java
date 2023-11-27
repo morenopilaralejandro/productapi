@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.product.api.contact.Contact;
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,7 +24,7 @@ public class Cntcstate {
 	@Column(name = "cntcstate_name")
 	private String cntcstateName;
 	@JsonIgnoreProperties("cntcstate")
-	@OneToMany(mappedBy = "cntcstate", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "cntcstate", fetch = FetchType.EAGER)
 	private List<Contact> contactList;
 
 	public Cntcstate() {

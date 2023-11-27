@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.product.api.cntcstate.Cntcstate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -98,7 +99,7 @@ public class Contact {
 	@Override
 	public String toString() {
 		return "Contact [contactId=" + contactId + ", contactName=" + contactName + ", contactEmail=" + contactEmail
-				+ ", contactMsg=" + contactMsg + ", contactDate=" + contactDate + ", cntcstate=" + cntcstate + "]";
+				+ ", contactMsg=" + contactMsg + ", contactDate=" + contactDate + "]";
 	}
 
 	@Override

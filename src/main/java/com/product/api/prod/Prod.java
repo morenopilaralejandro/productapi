@@ -132,7 +132,7 @@ public class Prod {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(prodDescEn, prodDescEs, prodId, prodNameEn, prodNameEs, prodPrice);
+		return Objects.hash(allergens, cat, prodDescEn, prodDescEs, prodId, prodNameEn, prodNameEs, prodPrice);
 	}
 
 	@Override
@@ -144,9 +144,12 @@ public class Prod {
 		if (getClass() != obj.getClass())
 			return false;
 		Prod other = (Prod) obj;
-		return Objects.equals(prodDescEn, other.prodDescEn) && Objects.equals(prodDescEs, other.prodDescEs)
+		return Objects.equals(allergens, other.allergens) && Objects.equals(cat, other.cat)
+				&& Objects.equals(prodDescEn, other.prodDescEn) && Objects.equals(prodDescEs, other.prodDescEs)
 				&& Objects.equals(prodId, other.prodId) && Objects.equals(prodNameEn, other.prodNameEn)
 				&& Objects.equals(prodNameEs, other.prodNameEs) && Objects.equals(prodPrice, other.prodPrice);
 	}
+
+
 
 }
